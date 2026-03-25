@@ -1,7 +1,7 @@
-package com.cg.model;
+package com.busticket.entity;
 
 
-import com.cg.model.enums.BookingStatus;
+import com.busticket.entity.enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
