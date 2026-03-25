@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Buses {
+public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer busId;
