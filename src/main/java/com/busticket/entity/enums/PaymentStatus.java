@@ -1,4 +1,4 @@
-package com.cg.model.enums;
+package com.busticket.entity.enums;
 
 public enum PaymentStatus {
         SUCCESS,
