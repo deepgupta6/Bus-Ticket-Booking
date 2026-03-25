@@ -1,4 +1,4 @@
-package com.cg.model;
+package com.busticket.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
