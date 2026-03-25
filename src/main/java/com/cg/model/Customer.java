@@ -1,4 +1,4 @@
-package com.cg.module;
+package com.cg.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

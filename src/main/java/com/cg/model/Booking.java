@@ -1,7 +1,7 @@
-package com.cg.module;
+package com.cg.model;
 
 
-import com.cg.module.enums.BookingStatus;
+import com.cg.model.enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
