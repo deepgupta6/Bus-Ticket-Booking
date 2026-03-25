@@ -1,4 +1,4 @@
-package com.cg.module.enums;
+package com.cg.model.enums;
 
 public enum PaymentStatus {
         SUCCESS,
