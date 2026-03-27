@@ -16,7 +16,7 @@ public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long routeId;
+    private Integer routeId;
 
     private String fromCity;
     private String toCity;
