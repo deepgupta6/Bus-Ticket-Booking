@@ -1,4 +1,4 @@
-package com.cg.model;
+package com.busticket.entity;
 
 
 
