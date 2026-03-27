@@ -12,6 +12,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany(cascade = CascadeType.ALL)
     private Long addressId;
 
     private String address;
