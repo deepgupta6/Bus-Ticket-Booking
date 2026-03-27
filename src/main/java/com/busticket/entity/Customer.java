@@ -2,8 +2,7 @@ package com.busticket.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -30,20 +29,13 @@ public class Customer {
     @Column(name = "phone", length = 15)
     private String phone;
 
-    // Many customers can share one address
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    // One customer → many bookings
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
-    // One customer → many payments
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Payment> payments;
 
-    // One customer → many reviews
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Review> reviews;
 }
