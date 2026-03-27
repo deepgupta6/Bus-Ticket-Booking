@@ -1,8 +1,5 @@
 package com.busticket.entity;
 
-import com.busticket.entity.Address;
-import com.busticket.entity.Payment;
-import com.busticket.entity.Review;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

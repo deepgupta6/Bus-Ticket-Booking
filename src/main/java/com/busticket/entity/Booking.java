@@ -1,5 +1,4 @@
 package com.busticket.entity;
-import com.busticket.entity.Trip;
 import com.busticket.entity.enums.BookingStatus;
 import jakarta.persistence.*;
 import lombok.*;
