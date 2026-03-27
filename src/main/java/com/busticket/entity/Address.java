@@ -25,5 +25,5 @@ public class Address {
     @Size(min=6,max=10)
     private String zipCode;
 
-   
+
 }
