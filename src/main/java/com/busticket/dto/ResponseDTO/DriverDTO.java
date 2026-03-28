@@ -1,4 +1,4 @@
-package com.busticket.dto;
+package com.busticket.dto.ResponseDTO;
 
 public class DriverDTO {
     private int driverId;
