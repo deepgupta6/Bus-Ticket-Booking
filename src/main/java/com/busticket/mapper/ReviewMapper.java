@@ -1,6 +1,6 @@
 package com.busticket.mapper;
 
-import com.busticket.dto.ReviewDTO;
+import com.busticket.dto.ResponseDTO.ReviewDTO;
 import com.busticket.entity.Customer;
 import com.busticket.entity.Review;
 import com.busticket.entity.Trip;
