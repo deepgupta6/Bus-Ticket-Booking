@@ -1,4 +1,5 @@
 package com.busticket.service.impl;
 
-public class dummy {
+public class PaymentServiceImpl {
+
 }
