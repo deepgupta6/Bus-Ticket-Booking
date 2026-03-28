@@ -1,6 +1,6 @@
 package com.busticket.entity;
 
-import java.util.List;
+
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
