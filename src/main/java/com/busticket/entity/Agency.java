@@ -1,10 +1,8 @@
 package com.busticket.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,12 +11,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Agency {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer agencyId;
+
 	private String name;
 	private String contactPersonName;
 	private String email;
 	private String phone;
+
+	@OneToMany(mappedBy = "agency", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<AgencyOffice> offices;
 }

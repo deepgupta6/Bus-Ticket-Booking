@@ -5,11 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 @Entity
 @Table(name = "buses")
 @Data
@@ -22,9 +20,8 @@ public class Bus {
     @Column(name = "bus_id")
     private Integer busId;
 
-    // Many buses belong to one office
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id", nullable = false)
     private AgencyOffice office;
 
@@ -40,7 +37,6 @@ public class Bus {
     @Column(name = "type", length = 30)
     private String type;
 
-    // One bus can have many trips
     @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Trip> trips;
 }
