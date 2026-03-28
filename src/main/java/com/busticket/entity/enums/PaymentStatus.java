@@ -3,7 +3,8 @@ package com.busticket.entity.enums;
 public enum PaymentStatus {
 
     SUCCESS("Success"),
-    FAILED("Failed");
+    FAILED("Failed"),
+    PENDING("Pending");
 
     private final String message;
 
