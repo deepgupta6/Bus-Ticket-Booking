@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "customers")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Customer {
 
     @Id
@@ -29,13 +29,7 @@ public class Customer {
     @Column(name = "phone", length = 15)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Payment> payments;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Review> reviews;
 }

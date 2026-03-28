@@ -1,31 +1,34 @@
 package com.busticket.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import java.util.List;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "addresses")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
-
+    @NotNull
     private String address;
+    @NotNull
     private String city;
+    @NotNull
     private String state;
+    @NotNull
+    @Size(min=6,max=10)
     private String zipCode;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-    private List<Customer> customers;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-    private List<AgencyOffice> offices;
-
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-    private List<Driver> drivers;
 }

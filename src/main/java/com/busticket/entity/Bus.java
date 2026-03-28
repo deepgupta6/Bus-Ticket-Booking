@@ -3,16 +3,16 @@ package com.busticket.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "buses")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Bus {
 
     @Id
@@ -21,7 +21,7 @@ public class Bus {
     private Integer busId;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "office_id", nullable = false)
     private AgencyOffice office;
 
@@ -37,6 +37,4 @@ public class Bus {
     @Column(name = "type", length = 30)
     private String type;
 
-    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Trip> trips;
 }

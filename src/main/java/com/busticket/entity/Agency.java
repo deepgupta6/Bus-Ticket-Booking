@@ -1,26 +1,32 @@
 package com.busticket.entity;
 
-import java.util.List;
-
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "agencies")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Agency {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer agencyId;
-
+	@NotNull
 	private String name;
+	@NotNull
 	private String contactPersonName;
+	@Email
 	private String email;
+	@NotNull
 	private String phone;
 
-	@OneToMany(mappedBy = "agency", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<AgencyOffice> offices;
+	
 }
