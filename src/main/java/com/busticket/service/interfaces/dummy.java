@@ -1,5 +1,4 @@
 package com.busticket.service.interfaces;
 
-public interface IDriverService{
-
+public interface dummy {
 }
