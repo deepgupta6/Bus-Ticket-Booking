@@ -1,6 +1,7 @@
 package com.busticket.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,19 +21,19 @@ public class Route {
     private Integer routeId;
 
     @Column(name = "from_city", nullable = false)
+    @NotNull
     private String fromCity;
 
     @Column(name = "to_city", nullable = false)
+    @NotNull
     private String toCity;
 
     @Column(name = "break_points")
+    @NotNull
     private Integer breakPoints;
 
     @Column(name = "duration")
+    @NotNull
     private Integer duration;
 
-    @OneToMany(mappedBy = "route", fetch = FetchType.LAZY)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private List<Trip> trips;
 }
