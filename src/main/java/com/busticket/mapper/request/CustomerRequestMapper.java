@@ -2,32 +2,41 @@ package com.busticket.mapper.request;
 
 import com.busticket.dto.request.CustomerRequest;
 import com.busticket.entity.Customer;
+import com.busticket.entity.Address;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerRequestMapper {
 
-    private final AddressRequestMapper addressRequestMapper;
+    private final AddressRequestMapper addressMapper;
 
-    public CustomerRequestMapper(AddressRequestMapper addressRequestMapper) {
-        this.addressRequestMapper = addressRequestMapper;
+    public CustomerRequestMapper(AddressRequestMapper addressMapper) {
+        this.addressMapper = addressMapper;
     }
 
-    public Customer requestToEntity(CustomerRequest request) {
+    public Customer requestToEntity(CustomerRequest dto) {
+        if (dto == null) return null;
+
         Customer customer = new Customer();
-        customer.setName(request.getName());
-        customer.setEmail(request.getEmail());
-        customer.setPhone(request.getPhone());
-        customer.setAddress(addressRequestMapper.requestToEntity(request.getAddress()));
+        customer.setName(dto.getName());
+        customer.setEmail(dto.getEmail());
+        customer.setPhone(dto.getPhone());
+
+        Address address = addressMapper.requestToEntity(dto.getAddress());
+        customer.setAddress(address);
+
         return customer;
     }
 
-    public CustomerRequest entityToRequest(Customer customer) {
-        CustomerRequest request = new CustomerRequest();
-        request.setName(customer.getName());
-        request.setEmail(customer.getEmail());
-        request.setPhone(customer.getPhone());
-        request.setAddress(addressRequestMapper.entityToRequest(customer.getAddress()));
-        return request;
+    public CustomerRequest entityToRequest(Customer entity) {
+        if (entity == null) return null;
+
+        CustomerRequest dto = new CustomerRequest();
+        dto.setName(entity.getName());
+        dto.setEmail(entity.getEmail());
+        dto.setPhone(entity.getPhone());
+        dto.setAddress(addressMapper.entityToRequest(entity.getAddress()));
+
+        return dto;
     }
 }
