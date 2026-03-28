@@ -1,6 +1,6 @@
 package com.busticket.mapper;
 
-import com.busticket.dto.RouteDTO;
+import com.busticket.dto.ResponseDTO.RouteDTO;
 import com.busticket.entity.Route;
 
 public class RouteMapper {

@@ -1,4 +1,4 @@
-package com.busticket.dto;
+package com.busticket.dto.ResponseDTO;
 
 import java.time.LocalDateTime;
 

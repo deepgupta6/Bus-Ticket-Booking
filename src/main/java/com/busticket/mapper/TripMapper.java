@@ -1,6 +1,6 @@
 package com.busticket.mapper;
 
-import com.busticket.dto.TripDTO;
+import com.busticket.dto.ResponseDTO.TripDTO;
 import com.busticket.entity.*;
 
 public class TripMapper {
