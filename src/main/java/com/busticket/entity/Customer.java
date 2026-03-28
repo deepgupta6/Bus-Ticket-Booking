@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "customers")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Customer {
 
     @Id
