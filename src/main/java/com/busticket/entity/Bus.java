@@ -21,7 +21,7 @@ public class Bus {
     private Integer busId;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "office_id", nullable = false)
     private AgencyOffice office;
 
@@ -37,6 +37,4 @@ public class Bus {
     @Column(name = "type", length = 30)
     private String type;
 
-    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Trip> trips;
 }

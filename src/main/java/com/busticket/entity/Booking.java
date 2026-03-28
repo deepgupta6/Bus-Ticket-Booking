@@ -1,6 +1,7 @@
 package com.busticket.entity;
 import com.busticket.entity.enums.BookingStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -15,14 +16,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "trip_id", nullable = false)
+    @NotNull
     private Trip trip;
 
     @Column(nullable = false)
+    @NotNull
     private Integer seatNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull
     private BookingStatus status;
 }
