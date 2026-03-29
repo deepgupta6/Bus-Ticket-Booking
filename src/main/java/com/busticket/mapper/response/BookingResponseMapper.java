@@ -2,12 +2,13 @@ package com.busticket.mapper.response;
 
 import com.busticket.dto.response.BookingResponse;
 import com.busticket.entity.Booking;
+import com.busticket.entity.Payment;
 import com.busticket.entity.Route;
 import com.busticket.entity.Trip;
 
 public class BookingResponseMapper {
 
-    public static BookingResponse entityToResponse(Booking booking) {
+    public static BookingResponse entityToResponse(Booking booking, Payment payment) {
         return BookingResponse.builder()
                 .bookingId(booking.getBookingId())
                 .tripId(booking.getTrip().getTripId())
@@ -18,8 +19,11 @@ public class BookingResponseMapper {
                 .fare(booking.getTrip().getFare())
                 .seatNumber(booking.getSeatNumber())
                 .status(booking.getStatus())
+                .customerId(payment != null ? payment.getCustomer().getCustomerId() : null)
+                .customerName(payment != null ? payment.getCustomer().getName() : null)
                 .build();
     }
+
 
     public static Booking responseToEntity(BookingResponse response) {
         Route route = new Route();

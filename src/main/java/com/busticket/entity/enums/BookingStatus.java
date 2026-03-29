@@ -1,9 +1,11 @@
 package com.busticket.entity.enums;
 
+import java.util.Locale;
+
 public enum BookingStatus {
 
-    AVAILABLE("Available"),
-    BOOKED("Booked");
+    Available("Available"),
+    Booked("Booked");
 
     private final String message;
 
@@ -16,6 +18,6 @@ public enum BookingStatus {
     }
 
     public static BookingStatus fromValue(String value) {
-        return BookingStatus.valueOf(value.toUpperCase());
+        return BookingStatus.valueOf(value);
     }
 }

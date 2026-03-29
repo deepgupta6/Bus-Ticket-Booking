@@ -1,14 +1,15 @@
 package com.busticket.service.interfaces;
 
-import com.busticket.entity.Booking;
+import com.busticket.dto.response.BookingResponse;
+
 import java.util.List;
 
 public interface IBookingService {
-    List<Booking> getAllBookings();
+    List<BookingResponse> getAllBookings();
 
-    Booking getBookingByID(long id);
+    BookingResponse getBookingByID(long id);
 
-    List<Booking> getBookingByTripID(long id);
+    List<BookingResponse> getBookingByTripID(long id);
 
     int numberOfSeatsBookedByTripID(long id);
 

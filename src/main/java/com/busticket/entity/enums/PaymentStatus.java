@@ -1,10 +1,12 @@
 package com.busticket.entity.enums;
 
+import java.util.Locale;
+
 public enum PaymentStatus {
 
-    SUCCESS("Success"),
-    FAILED("Failed"),
-    PENDING("Pending");
+    Success("Success"),
+    Failed("Failed"),
+    Pending("Pending");
 
     private final String message;
 
@@ -17,6 +19,6 @@ public enum PaymentStatus {
     }
 
     public static PaymentStatus fromValue(String value) {
-        return PaymentStatus.valueOf(value.toUpperCase());
+        return PaymentStatus.valueOf(value);
     }
 }

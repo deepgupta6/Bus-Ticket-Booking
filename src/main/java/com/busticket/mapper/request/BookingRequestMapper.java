@@ -19,7 +19,7 @@ public class BookingRequestMapper {
 
         booking.setTrip(trip);
         booking.setSeatNumber(dto.getSeatNumber());
-        booking.setStatus(BookingStatus.BOOKED);
+        booking.setStatus(BookingStatus.Booked);
 
         return booking;
     }
