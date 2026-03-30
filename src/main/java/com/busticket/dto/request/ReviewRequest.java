@@ -12,10 +12,10 @@ import lombok.Data;
 public class ReviewRequest {
 
     @NotNull(message = "Customer ID is required")
-    private Long customerId;
+    private Integer customerId;
 
     @NotNull(message = "Trip ID is required")
-    private Long tripId;
+    private Integer tripId;
 
     @NotNull(message = "Rating is required")
     @Min(value = 1, message = "Rating must be at least 1")

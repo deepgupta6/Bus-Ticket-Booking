@@ -8,7 +8,7 @@ import lombok.Data;
 @Builder
 public class CustomerResponse {
 
-    private Long customerId;
+    private Integer customerId;
     private String name;
     private String email;
     private String phone;

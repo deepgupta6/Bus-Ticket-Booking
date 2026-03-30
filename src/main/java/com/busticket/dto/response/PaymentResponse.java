@@ -14,18 +14,18 @@ public class PaymentResponse {
     private Integer paymentId;
 
     // Booking summary
-    private Long bookingId;
+    private Integer bookingId;
     private Integer seatNumber;
     private String bookingStatus;
 
     // Trip summary (via booking)
-    private Long tripId;
+    private Integer tripId;
     private String fromCity;
     private String toCity;
     private LocalDateTime departureTime;
 
     // Customer summary
-    private Long customerId;
+    private Integer customerId;
     private String customerName;
     private String customerEmail;
 

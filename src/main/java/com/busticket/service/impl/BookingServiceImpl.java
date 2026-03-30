@@ -19,7 +19,6 @@ public class BookingServiceImpl implements IBookingService {
     private final IBookingRepo bookingRepo;
     private final IPaymentRepo paymentRepo;
 
-    @Autowired
     public BookingServiceImpl(IBookingRepo bookingRepo, IPaymentRepo paymentRepo) {
         this.bookingRepo = bookingRepo;
         this.paymentRepo = paymentRepo;
@@ -36,14 +35,14 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingResponse getBookingByID(long id) {
+    public BookingResponse getBookingByID(Integer id) {
         Booking booking = bookingRepo.findById(id).orElse(null);
         Payment payment = paymentRepo.findByBooking_BookingId(id).orElse(null);
         return BookingResponseMapper.entityToResponse(booking, payment);
     }
 
     @Override
-    public List<BookingResponse> getBookingByTripID(long id) {
+    public List<BookingResponse> getBookingByTripID(Integer id) {
         return bookingRepo.findByTrip_TripId(id).stream()
                 .map(booking -> {
                     Payment payment = paymentRepo.findByBooking_BookingId(booking.getBookingId()).orElse(null);
@@ -53,7 +52,7 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public int numberOfSeatsBookedByTripID(long id) {
+    public int numberOfSeatsBookedByTripID(Integer id) {
         return bookingRepo.findByTrip_TripIdAndStatus(id, BookingStatus.Booked).size();
     }
 

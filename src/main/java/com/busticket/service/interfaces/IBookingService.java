@@ -7,10 +7,10 @@ import java.util.List;
 public interface IBookingService {
     List<BookingResponse> getAllBookings();
 
-    BookingResponse getBookingByID(long id);
+    BookingResponse getBookingByID(Integer id);
 
-    List<BookingResponse> getBookingByTripID(long id);
+    List<BookingResponse> getBookingByTripID(Integer id);
 
-    int numberOfSeatsBookedByTripID(long id);
+    int numberOfSeatsBookedByTripID(Integer id);
 
 }

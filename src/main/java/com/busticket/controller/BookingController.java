@@ -14,7 +14,6 @@ public class BookingController {
 
     private final IBookingService bookingService;
 
-    @Autowired
     public BookingController(IBookingService bookingService) {
         this.bookingService = bookingService;
     }
@@ -25,17 +24,17 @@ public class BookingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookingResponse> getBookingById(@PathVariable long id) {
+    public ResponseEntity<BookingResponse> getBookingById(@PathVariable Integer id) {
         return ResponseEntity.ok(bookingService.getBookingByID(id));
     }
 
     @GetMapping("/trip/{tripId}")
-    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@PathVariable long tripId) {
+    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@PathVariable Integer tripId) {
         return ResponseEntity.ok(bookingService.getBookingByTripID(tripId));
     }
 
     @GetMapping("/trip/{tripId}/booked-seats")
-    public ResponseEntity<Integer> getNumberOfBookedSeats(@PathVariable long tripId) {
+    public ResponseEntity<Integer> getNumberOfBookedSeats(@PathVariable Integer tripId) {
         return ResponseEntity.ok(bookingService.numberOfSeatsBookedByTripID(tripId));
     }
 }

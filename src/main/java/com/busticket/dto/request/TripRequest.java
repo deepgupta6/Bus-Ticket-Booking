@@ -20,10 +20,10 @@ public class TripRequest {
     private Integer busId;
 
     @NotNull(message = "Boarding address ID is required")
-    private Long boardingAddressId;
+    private Integer boardingAddressId;
 
     @NotNull(message = "Dropping address ID is required")
-    private Long droppingAddressId;
+    private Integer droppingAddressId;
 
     @NotNull(message = "Departure time is required")
     @Future(message = "Departure time must be in the future")

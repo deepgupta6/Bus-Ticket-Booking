@@ -8,7 +8,7 @@ import lombok.Data;
 @Builder
 public class AddressResponse {
 
-    private Long addressId;
+    private Integer addressId;
     private String address;
     private String city;
     private String state;

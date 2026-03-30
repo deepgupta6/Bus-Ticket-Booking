@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Builder
 public class BookingResponse {
 
-    private Long bookingId;
+    private Integer bookingId;
 
     // Trip summary fields (avoid full TripResponse nesting)
-    private Long tripId;
+    private Integer tripId;
     private String fromCity;
     private String toCity;
     private LocalDateTime departureTime;
@@ -25,7 +25,7 @@ public class BookingResponse {
     private Integer seatNumber;
     private BookingStatus status;
 
-    private Long customerId;
+    private Integer customerId;
     private String customerName;
 
 }

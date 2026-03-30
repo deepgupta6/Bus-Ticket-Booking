@@ -10,15 +10,15 @@ import java.time.LocalDateTime;
 @Builder
 public class ReviewResponse {
 
-    private Long reviewId;
+    private Integer reviewId;
 
     // Customer summary
-    private Long customerId;
+    private Integer customerId;
     private String customerName;
     private String customerEmail;
 
     // Trip summary
-    private Long tripId;
+    private Integer tripId;
     private String fromCity;
     private String toCity;
     private LocalDateTime departureTime;
