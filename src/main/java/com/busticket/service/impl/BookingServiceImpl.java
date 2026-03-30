@@ -36,36 +36,16 @@ public class BookingServiceImpl implements IBookingService {
     @Override
     public List<BookingResponse> getAllBookings() {
         List<Booking> bookings = bookingRepo.findAll();
-<<<<<<< HEAD
-        Map<Long, Payment> paymentMap = getPaymentMap(bookings);
-        return bookings.stream()
-                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
-                .toList();
-    }
-
-    @Override
-    public List<BookingResponse> getBookingByTripID(long id) {
-        List<Booking> bookings = bookingRepo.findByTrip_TripId(id);
-        Map<Long, Payment> paymentMap = getPaymentMap(bookings);
-        return bookings.stream()
-                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
-                .toList();
-=======
         Map<Integer, Payment> paymentMap = getPaymentMap(bookings);
         return bookings.stream()
                 .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
                 .collect(Collectors.toList());
->>>>>>> 0b3ac2272bb3bcc1f2f1c82630fcdf799c1d6754
     }
 
     @Override
     public BookingResponse getBookingByID(Integer id) {
         Booking booking = bookingRepo.findById(id).orElse(null);
         Payment payment = paymentRepo.findFirstByBooking_BookingId(id).orElse(null);
-<<<<<<< HEAD
-        assert booking != null;
-=======
->>>>>>> 0b3ac2272bb3bcc1f2f1c82630fcdf799c1d6754
         return BookingResponseMapper.entityToResponse(booking, payment);
     }
 
