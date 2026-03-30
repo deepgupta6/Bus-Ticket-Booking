@@ -8,7 +8,6 @@ import com.busticket.mapper.response.BookingResponseMapper;
 import com.busticket.respository.IBookingRepo;
 import com.busticket.respository.IPaymentRepo;
 import com.busticket.service.interfaces.IBookingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +25,18 @@ public class BookingServiceImpl implements IBookingService {
         this.paymentRepo = paymentRepo;
     }
 
+    private Map<Integer, Payment> getPaymentMap(List<Booking> bookings) {
+        List<Integer> bookingIds = bookings.stream()
+                .map(Booking::getBookingId)
+                .collect(Collectors.toList());
+        return paymentRepo.findByBookingIds(bookingIds).stream()
+                .collect(Collectors.toMap(p -> p.getBooking().getBookingId(), p -> p, (a, b) -> a));
+    }
+
     @Override
     public List<BookingResponse> getAllBookings() {
         List<Booking> bookings = bookingRepo.findAll();
+<<<<<<< HEAD
         Map<Long, Payment> paymentMap = getPaymentMap(bookings);
         return bookings.stream()
                 .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
@@ -42,23 +50,31 @@ public class BookingServiceImpl implements IBookingService {
         return bookings.stream()
                 .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
                 .toList();
+=======
+        Map<Integer, Payment> paymentMap = getPaymentMap(bookings);
+        return bookings.stream()
+                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
+                .collect(Collectors.toList());
+>>>>>>> 0b3ac2272bb3bcc1f2f1c82630fcdf799c1d6754
     }
 
     @Override
     public BookingResponse getBookingByID(Integer id) {
         Booking booking = bookingRepo.findById(id).orElse(null);
         Payment payment = paymentRepo.findFirstByBooking_BookingId(id).orElse(null);
+<<<<<<< HEAD
         assert booking != null;
+=======
+>>>>>>> 0b3ac2272bb3bcc1f2f1c82630fcdf799c1d6754
         return BookingResponseMapper.entityToResponse(booking, payment);
     }
 
     @Override
     public List<BookingResponse> getBookingByTripID(Integer id) {
-        return bookingRepo.findByTrip_TripId(id).stream()
-                .map(booking -> {
-                    Payment payment = paymentRepo.findByBooking_BookingId(booking.getBookingId()).orElse(null);
-                    return BookingResponseMapper.entityToResponse(booking, payment);
-                })
+        List<Booking> bookings = bookingRepo.findByTrip_TripId(id);
+        Map<Integer, Payment> paymentMap = getPaymentMap(bookings);
+        return bookings.stream()
+                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
                 .collect(Collectors.toList());
 
     private Map<Long, Payment> getPaymentMap(List<Booking> bookings) {
@@ -77,5 +93,4 @@ public class BookingServiceImpl implements IBookingService {
     public int numberOfSeatsBookedByTripID(Integer id) {
         return bookingRepo.findByTrip_TripIdAndStatus(id, BookingStatus.Booked).size();
     }
-
 }

@@ -1,5 +1,12 @@
 package com.busticket.service.interfaces;
 
-public interface ITripService {
+import com.busticket.dto.response.TripFullDetailsResponse;
 
+public interface ITripService {
+    TripFullDetailsResponse getTripById(Integer tripId);
 }
+
+
+
+
+

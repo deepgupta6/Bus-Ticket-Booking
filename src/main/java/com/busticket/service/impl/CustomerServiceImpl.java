@@ -22,10 +22,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     @Transactional(readOnly = true)
-    public CustomerResponse getCustomerWithAddress(Long customerId) {
+    public CustomerResponse getCustomerWithAddress(Integer customerId) {
         Customer customer = customerRepository.findByIdWithAddress(customerId)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Customer", "id", customerId));
+                        new ResourceNotFoundException("Customer id"+ customerId));
 
         if (customer.getAddress() == null) {
             customer.setAddress(new Address()); // avoids NPE
