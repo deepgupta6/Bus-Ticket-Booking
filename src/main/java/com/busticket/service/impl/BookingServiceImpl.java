@@ -10,7 +10,9 @@ import com.busticket.respository.IPaymentRepo;
 import com.busticket.service.interfaces.IBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,18 +28,27 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public List<BookingResponse> getAllBookings() {
-        return bookingRepo.findAll().stream()
-                .map(booking -> {
-                    Payment payment = paymentRepo.findByBooking_BookingId(booking.getBookingId()).orElse(null);
-                    return BookingResponseMapper.entityToResponse(booking, payment);
-                })
-                .collect(Collectors.toList());
+        List<Booking> bookings = bookingRepo.findAll();
+        Map<Long, Payment> paymentMap = getPaymentMap(bookings);
+        return bookings.stream()
+                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
+                .toList();
+    }
+
+    @Override
+    public List<BookingResponse> getBookingByTripID(long id) {
+        List<Booking> bookings = bookingRepo.findByTrip_TripId(id);
+        Map<Long, Payment> paymentMap = getPaymentMap(bookings);
+        return bookings.stream()
+                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
+                .toList();
     }
 
     @Override
     public BookingResponse getBookingByID(Integer id) {
         Booking booking = bookingRepo.findById(id).orElse(null);
-        Payment payment = paymentRepo.findByBooking_BookingId(id).orElse(null);
+        Payment payment = paymentRepo.findFirstByBooking_BookingId(id).orElse(null);
+        assert booking != null;
         return BookingResponseMapper.entityToResponse(booking, payment);
     }
 
@@ -49,7 +60,18 @@ public class BookingServiceImpl implements IBookingService {
                     return BookingResponseMapper.entityToResponse(booking, payment);
                 })
                 .collect(Collectors.toList());
+
+    private Map<Long, Payment> getPaymentMap(List<Booking> bookings) {
+        List<Long> ids = bookings.stream().map(Booking::getBookingId).toList();
+        return paymentRepo.findByBookingIds(ids).stream()
+                .collect(Collectors.toMap(
+                        p -> p.getBooking().getBookingId(),
+                        p -> p,
+                        (existing, duplicate) -> existing
+                ));
     }
+
+
 
     @Override
     public int numberOfSeatsBookedByTripID(Integer id) {
