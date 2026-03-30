@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class TripResponse {
 
-    private Long tripId;
+    private Integer tripId;
 
     // Route summary
     private Integer routeId;
@@ -27,11 +27,11 @@ public class TripResponse {
     private Integer busCapacity;
 
     // Boarding & dropping addresses
-    private Long boardingAddressId;
+    private Integer boardingAddressId;
     private String boardingAddress;
     private String boardingCity;
 
-    private Long droppingAddressId;
+    private Integer droppingAddressId;
     private String droppingAddress;
     private String droppingCity;
 

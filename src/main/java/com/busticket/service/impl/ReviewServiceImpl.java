@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ReviewServiceImpl implements IReviewService {
 
     private final IReviewRepo reviewRepo;
-    @Autowired
+   
     public ReviewServiceImpl(IReviewRepo reviewRepo) {
         this.reviewRepo = reviewRepo;
     }
@@ -24,18 +24,18 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public Review findReviewById(long id) {
+    public Review findReviewById(Integer id) {
         Optional<Review> op=reviewRepo.findById(id);
         return op.orElse(null);
     }
 
     @Override
-    public List<Review> findReviewByCustomerId(long customerId) {
+    public List<Review> findReviewByCustomerId(Integer customerId) {
         return reviewRepo.findByCustomer_CustomerId(customerId);
     }
 
     @Override
-    public List<Review> findReviewByTripId(long tripId) {
+    public List<Review> findReviewByTripId(Integer tripId) {
         return reviewRepo.findByTrip_TripId(tripId);
     }
 }

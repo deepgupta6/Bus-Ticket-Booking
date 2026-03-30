@@ -6,6 +6,6 @@ import com.busticket.entity.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ICustomerRepo extends JpaRepository<Customer, Long>{
+public interface ICustomerRepo extends JpaRepository<Customer, Integer>{
 
 }

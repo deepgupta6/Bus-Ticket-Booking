@@ -25,7 +25,7 @@ public class BookingResponse {
     private Integer seatNumber;
     private BookingStatus status;
 
-    private Long customerId;
+    private Integer customerId;
     private String customerName;
 
 }

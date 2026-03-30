@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IBookingRepo extends JpaRepository<Booking, Long> {
+public interface IBookingRepo extends JpaRepository<Booking, Integer> {
 
-    List<Booking> findByTrip_TripId(long id);
+    List<Booking> findByTrip_TripId(Integer id);
 
-    List<Booking> findByTrip_TripIdAndStatus(long id, BookingStatus status);
+    List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
 
 }

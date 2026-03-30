@@ -9,10 +9,10 @@ import lombok.Data;
 public class PaymentRequest {
 
     @NotNull(message = "Booking ID is required")
-    private Long bookingId;
+    private Integer bookingId;
 
     @NotNull(message = "Customer ID is required")
-    private Long customerId;
+    private Integer customerId;
 
     @NotNull(message = "Amount is required")
     @Positive(message = "Amount must be greater than zero")

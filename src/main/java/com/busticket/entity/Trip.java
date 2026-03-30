@@ -20,7 +20,7 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trip_id")
-    private Long tripId;
+    private Integer tripId;
 
     @ManyToOne
     @JoinColumn(name = "route_id", nullable = false)
