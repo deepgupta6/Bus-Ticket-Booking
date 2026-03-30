@@ -56,18 +56,7 @@ public class BookingServiceImpl implements IBookingService {
         return bookings.stream()
                 .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
                 .collect(Collectors.toList());
-
-    private Map<Long, Payment> getPaymentMap(List<Booking> bookings) {
-        List<Long> ids = bookings.stream().map(Booking::getBookingId).toList();
-        return paymentRepo.findByBookingIds(ids).stream()
-                .collect(Collectors.toMap(
-                        p -> p.getBooking().getBookingId(),
-                        p -> p,
-                        (existing, duplicate) -> existing
-                ));
-    }
-
-
+        }
 
     @Override
     public int numberOfSeatsBookedByTripID(Integer id) {
