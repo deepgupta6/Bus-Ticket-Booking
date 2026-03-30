@@ -1,7 +1,7 @@
 package com.busticket.service.interfaces;
 
-public interface ICustomerService {
-	
-	
+import com.busticket.dto.response.CustomerResponse;
 
+public interface ICustomerService {
+    CustomerResponse getCustomerWithAddress(Integer customerId);
 }

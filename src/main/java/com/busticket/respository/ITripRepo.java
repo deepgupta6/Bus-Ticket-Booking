@@ -1,14 +1,18 @@
 package com.busticket.respository;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.busticket.dto.response.DriverTripSummaryResponse;
 import com.busticket.entity.Trip;
 
+@Repository
 public interface ITripRepo extends JpaRepository<Trip, Integer> {
 
 	@Query
@@ -65,4 +69,11 @@ public interface ITripRepo extends JpaRepository<Trip, Integer> {
 		        @Param("toCity") String toCity
 		);
 
+
+
+	public List<Trip> findByRoute_RouteId(Integer routeId);
+
+    @EntityGraph(attributePaths = {"bus", "route"})
+    public Optional<Trip> findByTripId(Integer tripId);
 }
+

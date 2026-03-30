@@ -3,6 +3,7 @@ package com.busticket.service.interfaces;
 import java.util.List;
 
 import com.busticket.dto.response.DriverTripSummaryResponse;
+import com.busticket.dto.response.TripFullDetailsResponse;
 import com.busticket.dto.response.TripResponse;
 
 public interface ITripService {
@@ -13,5 +14,10 @@ public interface ITripService {
             String fromCity,
             String toCity
     );
+    public TripFullDetailsResponse getTripById(Integer tripId);
+
 
 }
+
+
+

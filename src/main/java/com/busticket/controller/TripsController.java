@@ -1,8 +1,8 @@
 package com.busticket.controller;
 
 import java.util.List;
-
-import org.springframework.http.HttpStatus;
+import com.busticket.dto.response.TripFullDetailsResponse;
+import com.busticket.service.interfaces.ITripService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.busticket.dto.response.DriverTripSummaryResponse;
 import com.busticket.dto.response.TripResponse;
-import com.busticket.service.interfaces.ITripService;
 
 @RestController
 @RequestMapping("/api/trips")
@@ -22,11 +21,6 @@ public class TripsController {
 
 	public TripsController(ITripService service) {
 		this.service = service;
-	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<TripResponse> getTripById(@PathVariable int id) {
-		return new ResponseEntity<TripResponse>(service.getTripById(id), HttpStatus.OK);
 	}
 
 	@GetMapping
@@ -43,4 +37,15 @@ public class TripsController {
         return service.getCompletedTrips(fromCity, toCity);
     }
 
+    @GetMapping("/{tripId}")
+    public ResponseEntity<TripFullDetailsResponse> getTripById(
+            @PathVariable Integer tripId) {
+    
+        TripFullDetailsResponse trip = service.getTripById(tripId);
+    
+        return ResponseEntity.ok(trip);
+    }
 }
+
+
+
