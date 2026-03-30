@@ -1,8 +1,11 @@
 package com.busticket.mapper.response;
 
+import org.springframework.stereotype.Component;
+
 import com.busticket.dto.response.AgencyResponse;
 import com.busticket.entity.Agency;
 
+@Component
 public class AgencyResponseMapper {
 
     public static AgencyResponse entityToResponse(Agency agency) {
