@@ -16,5 +16,9 @@ public interface IBookingRepo extends JpaRepository<Booking, Integer> {
 
 
     List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
+    @Query("SELECT b, p FROM Booking b LEFT JOIN Payment p ON p.booking.bookingId = b.bookingId")
+    List<Object[]> findAllWithPayment();
+    @Query("SELECT b, p FROM Booking b LEFT JOIN Payment p ON p.booking.bookingId = b.bookingId WHERE b.trip.tripId = :id")
+    List<Object[]> findByTripIdWithPayment(@Param("id") Integer id);
 
 }

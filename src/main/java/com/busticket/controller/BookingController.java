@@ -28,8 +28,8 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookingByID(id));
     }
 
-    @GetMapping("/trip/{tripId}")
-    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@PathVariable Integer tripId) {
+    @GetMapping("/trip")
+    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@RequestParam Integer tripId) {
         return ResponseEntity.ok(bookingService.getBookingByTripID(tripId));
     }
 
