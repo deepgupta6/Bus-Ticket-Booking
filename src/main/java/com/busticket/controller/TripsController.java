@@ -22,6 +22,12 @@ public class TripsController {
 	public TripsController(ITripService service) {
 		this.service = service;
 	}
+	
+	@GetMapping("/route/{id}")
+	public ResponseEntity<List<TripResponse>> getTripsWithAvailableSeatsInARoute(@PathVariable Integer id) {
+	    List<TripResponse> trips = service.getTripsWithAvailableSeatsInARoute(0,id);
+	    return ResponseEntity.ok(trips);
+	}
 
 	@GetMapping
 	public ResponseEntity<List<TripResponse>> getTripsWithAvailableSeats() {

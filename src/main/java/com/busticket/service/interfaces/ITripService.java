@@ -8,8 +8,8 @@ import com.busticket.dto.response.TripResponse;
 
 public interface ITripService {
 	
+	public List<TripResponse> getTripsWithAvailableSeatsInARoute(int val,int id);
 	public List<TripResponse> getTripsWithAvailableSeats(int val);
-	public TripResponse getTripById(int id);
 	public List<DriverTripSummaryResponse> getCompletedTrips(
             String fromCity,
             String toCity
