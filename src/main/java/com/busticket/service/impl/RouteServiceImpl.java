@@ -1,5 +1,6 @@
 package com.busticket.service.impl;
 
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,12 +17,17 @@ import com.busticket.service.interfaces.IRouteService;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class RouteServiceImpl implements IRouteService {
 
     private final IRouteRepo routeRepository;
     private final ITripRepo tripRepository;
     private final RouteWithTripsResponseMapper routeResponseMapper;
+    
+    public RouteServiceImpl(IRouteRepo routeRepository, ITripRepo tripRepository, RouteWithTripsResponseMapper routeResponseMapper) {
+    	this.routeRepository = routeRepository;
+    	this.tripRepository = tripRepository;
+    	this.routeResponseMapper = routeResponseMapper;
+    }
 
     @Override
     public RouteWithTripsDTO getRouteWithTrips(Integer routeId) {
