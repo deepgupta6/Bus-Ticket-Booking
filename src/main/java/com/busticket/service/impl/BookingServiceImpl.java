@@ -8,7 +8,6 @@ import com.busticket.mapper.response.BookingResponseMapper;
 import com.busticket.respository.IBookingRepo;
 import com.busticket.respository.IPaymentRepo;
 import com.busticket.service.interfaces.IBookingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;

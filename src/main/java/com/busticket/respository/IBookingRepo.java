@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface IBookingRepo extends JpaRepository<Booking, Integer> {
 
-    List<Booking> findByTrip_TripId(Integer id);
+    public List<Booking> findByTrip_TripId(Integer id);
 
-    List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
+    public List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
 
 }

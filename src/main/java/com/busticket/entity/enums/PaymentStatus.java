@@ -1,12 +1,9 @@
 package com.busticket.entity.enums;
 
-import java.util.Locale;
-
 public enum PaymentStatus {
 
     Success("Success"),
-    Failed("Failed"),
-    Pending("Pending");
+    Failed("Failed");
 
     private final String message;
 

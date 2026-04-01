@@ -25,7 +25,6 @@ public class PaymentRequestMapper {
 
         payment.setAmount(request.getAmount());
         payment.setPaymentDate(LocalDateTime.now());
-        payment.setPaymentStatus(PaymentStatus.Pending);
 
         return payment;
     }
