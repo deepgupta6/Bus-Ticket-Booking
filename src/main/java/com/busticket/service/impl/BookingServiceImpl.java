@@ -9,6 +9,7 @@ import com.busticket.respository.IBookingRepo;
 import com.busticket.respository.IPaymentRepo;
 import com.busticket.service.interfaces.IBookingService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -55,7 +56,7 @@ public class BookingServiceImpl implements IBookingService {
         return bookings.stream()
                 .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
                 .collect(Collectors.toList());
-    }
+        }
 
     @Override
     public int numberOfSeatsBookedByTripID(Integer id) {

@@ -14,7 +14,6 @@ public interface IBookingRepo extends JpaRepository<Booking, Integer> {
     @Query("SELECT b FROM Booking b JOIN FETCH b.trip t JOIN FETCH t.route WHERE t.tripId = :id")
     List<Booking> findByTrip_TripId(@Param("id") Integer id);
 
-
-    List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
+    public List<Booking> findByTrip_TripIdAndStatus(Integer id, BookingStatus status);
 
 }
