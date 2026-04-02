@@ -43,7 +43,7 @@ public class BookingServiceImpl implements IBookingService {
         return bookingRepo.findByTripIdWithPayment(id).stream()
                 .map(row -> BookingResponseMapper.entityToResponse((Booking) row[0], (Payment) row[1]))
                 .collect(Collectors.toList());
-        }
+    }
 
     @Override
     public int numberOfSeatsBookedByTripID(Integer id) {
