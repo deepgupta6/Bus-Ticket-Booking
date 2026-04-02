@@ -11,7 +11,6 @@ import com.busticket.service.interfaces.IBookingService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,20 +24,10 @@ public class BookingServiceImpl implements IBookingService {
         this.paymentRepo = paymentRepo;
     }
 
-    private Map<Integer, Payment> getPaymentMap(List<Booking> bookings) {
-        List<Integer> bookingIds = bookings.stream()
-                .map(Booking::getBookingId)
-                .collect(Collectors.toList());
-        return paymentRepo.findByBookingIds(bookingIds).stream()
-                .collect(Collectors.toMap(p -> p.getBooking().getBookingId(), p -> p, (a, b) -> a));
-    }
-
     @Override
     public List<BookingResponse> getAllBookings() {
-        List<Booking> bookings = bookingRepo.findAll();
-        Map<Integer, Payment> paymentMap = getPaymentMap(bookings);
-        return bookings.stream()
-                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
+        return bookingRepo.findAllWithPayment().stream()
+                .map(row -> BookingResponseMapper.entityToResponse((Booking) row[0], (Payment) row[1]))
                 .collect(Collectors.toList());
     }
 
@@ -51,15 +40,14 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public List<BookingResponse> getBookingByTripID(Integer id) {
-        List<Booking> bookings = bookingRepo.findByTrip_TripId(id);
-        Map<Integer, Payment> paymentMap = getPaymentMap(bookings);
-        return bookings.stream()
-                .map(b -> BookingResponseMapper.entityToResponse(b, paymentMap.get(b.getBookingId())))
+        return bookingRepo.findByTripIdWithPayment(id).stream()
+                .map(row -> BookingResponseMapper.entityToResponse((Booking) row[0], (Payment) row[1]))
                 .collect(Collectors.toList());
-        }
+    }
 
     @Override
     public int numberOfSeatsBookedByTripID(Integer id) {
         return bookingRepo.findByTrip_TripIdAndStatus(id, BookingStatus.Booked).size();
     }
 }
+
