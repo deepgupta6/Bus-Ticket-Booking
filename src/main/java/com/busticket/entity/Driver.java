@@ -20,7 +20,7 @@ public class Driver {
 	@Column(name = "driver_id")
 	private Integer driverId;
 
-	@Column(name = "license_number", nullable = false)
+	@Column(name = "license_number", nullable = false, unique=true)
 	@NotNull
 	private String licenseNumber;
 

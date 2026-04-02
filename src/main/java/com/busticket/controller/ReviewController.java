@@ -24,7 +24,9 @@ public class ReviewController {
     }
 
     @GetMapping("/customer/{customerId}/reviews")
+
     public ResponseEntity<List<ReviewResponse>> getReviewsByCustomerId(@PathVariable Integer customerId) {
+
         List<ReviewResponse> reviews = reviewService.findReviewByCustomerId(customerId)
                 .stream()
                 .map(ReviewResponseMapper::entityToResponse)
