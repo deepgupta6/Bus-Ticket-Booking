@@ -3,7 +3,7 @@ package com.busticket.service.impl;
 import com.busticket.dto.response.BookingResponse;
 import com.busticket.entity.Booking;
 import com.busticket.entity.Payment;
-import com.busticket.entity.enums.BookingStatus;
+import com.busticket.exception.ResourceNotFoundException;
 import com.busticket.mapper.response.BookingResponseMapper;
 import com.busticket.respository.IBookingRepo;
 import com.busticket.respository.IPaymentRepo;
@@ -11,7 +11,6 @@ import com.busticket.service.interfaces.IBookingService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BookingServiceImpl implements IBookingService {
@@ -28,26 +27,14 @@ public class BookingServiceImpl implements IBookingService {
     public List<BookingResponse> getAllBookings() {
         return bookingRepo.findAllWithPayment().stream()
                 .map(row -> BookingResponseMapper.entityToResponse((Booking) row[0], (Payment) row[1]))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     public BookingResponse getBookingByID(Integer id) {
-        Booking booking = bookingRepo.findById(id).orElse(null);
+        Booking booking = bookingRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found with id: " + id));
         Payment payment = paymentRepo.findFirstByBooking_BookingId(id).orElse(null);
         return BookingResponseMapper.entityToResponse(booking, payment);
     }
-
-    @Override
-    public List<BookingResponse> getBookingByTripID(Integer id) {
-        return bookingRepo.findByTripIdWithPayment(id).stream()
-                .map(row -> BookingResponseMapper.entityToResponse((Booking) row[0], (Payment) row[1]))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public int numberOfSeatsBookedByTripID(Integer id) {
-        return bookingRepo.findByTrip_TripIdAndStatus(id, BookingStatus.Booked).size();
-    }
 }
-
