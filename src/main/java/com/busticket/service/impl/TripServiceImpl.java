@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class TripServiceImpl implements ITripService {
 	private final ITripRepo repo;
 	private final TripMapper tripMapper;
@@ -35,12 +34,6 @@ public class TripServiceImpl implements ITripService {
 
 		return repo.findByAvailableSeatsGreaterThan(val).stream().map(e -> TripResponseMapper.entityToResponse(e))
 				.toList();
-	}
-
-	@Override
-	public TripResponse getTripById(int id) {
-
-		return TripResponseMapper.entityToResponse(repo.findById(id).get());
 	}
 	
 	@Override
@@ -75,6 +68,13 @@ public class TripServiceImpl implements ITripService {
 
         return tripMapper.tripToFullDetailsResponse(trip, route, bus, drivers);
     }
+
+	@Override
+	public List<TripResponse> getTripsWithAvailableSeatsInARoute(int val,int id) {
+		
+		return repo.findByAvailableSeatsGreaterThanAndRoute_RouteId(val,id).stream().map(e -> TripResponseMapper.entityToResponse(e))
+				.toList();
+	}
 
 }
 

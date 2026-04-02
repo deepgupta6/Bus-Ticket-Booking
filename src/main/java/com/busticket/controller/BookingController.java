@@ -5,7 +5,7 @@ import com.busticket.service.interfaces.IBookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-        import java.util.List;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -27,8 +27,8 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookingByID(id));
     }
 
-    @GetMapping("/trip/{tripId}")
-    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@PathVariable Integer tripId) {
+    @GetMapping("/trip")
+    public ResponseEntity<List<BookingResponse>> getBookingsByTripId(@RequestParam Integer tripId) {
         return ResponseEntity.ok(bookingService.getBookingByTripID(tripId));
     }
 

@@ -17,6 +17,8 @@ public interface ITripRepo extends JpaRepository<Trip, Integer> {
 
 	@Query
 	public List<Trip> findByAvailableSeatsGreaterThan(int val);
+	
+	public List<Trip> findByAvailableSeatsGreaterThanAndRoute_RouteId(int val,int id);
 
 	@Query("""
 			    SELECT t FROM Trip t
