@@ -9,8 +9,4 @@ public interface IBookingService {
 
     public BookingResponse getBookingByID(Integer id);
 
-    public List<BookingResponse> getBookingByTripID(Integer id);
-
-    public int numberOfSeatsBookedByTripID(Integer id);
-
 }
