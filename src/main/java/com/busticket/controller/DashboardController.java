@@ -49,7 +49,7 @@ public class DashboardController {
                 ),
 
                 "deep@gmail.com", List.of(
-                        new FeatureResponse("Get Trip with seat availability", "GET /api/trips"),
+                        new FeatureResponse("Get Trip with seat availability", "/api/trips"),
                         new FeatureResponse("Get driver schedule (their trips and routes)", "/api/drivers/{driver_id}/upcoming-trips"),
                         new FeatureResponse("Get total trips completed by drivers from boarding address and dropping address", "/api/trips/completed?fromCity={from_city}&toCity={to_city}")
                  ),
