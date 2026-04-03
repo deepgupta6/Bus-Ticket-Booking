@@ -16,7 +16,6 @@ public interface ITripService {
     );
     public TripFullDetailsResponse getTripById(Integer tripId);
 
-
 }
 
 

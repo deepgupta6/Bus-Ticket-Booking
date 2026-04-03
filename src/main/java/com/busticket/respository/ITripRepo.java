@@ -77,5 +77,6 @@ public interface ITripRepo extends JpaRepository<Trip, Integer> {
 
     @EntityGraph(attributePaths = {"bus", "route"})
     public Optional<Trip> findByTripId(Integer tripId);
+   
 }
 
