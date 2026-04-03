@@ -26,8 +26,6 @@ public class AuthController {
 
         User user = userService.getUser(request.getEmail());
 
-        System.out.println(user);
-
         if (!request.getPassword().equals(user.getPassword())) {
             return ResponseEntity.status(401).body("Invalid password");
         }

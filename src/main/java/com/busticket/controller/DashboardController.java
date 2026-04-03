@@ -26,7 +26,7 @@ public class DashboardController {
                 "javed@gmail.com", "Mohammad Javed",
                 "shivam@gmail.com", "Shivam",
                 "ayush@gmail.com", "Ayush",
-                "shreshth@gmail.com", "Shrestha",
+                "shreshtha@gmail.com", "Shrestha",
                 "deep@gmail.com", "Deep"
         );
 
@@ -45,7 +45,7 @@ public class DashboardController {
 
                 "ayush@gmail.com" , List.of(
                         new FeatureResponse("Get Route with Trips", "/api/routes/{route_id}/trips"),
-                        new FeatureResponse("Get agency offices with their bus and drivers", "/api/agencies/offices/resources")
+                        new FeatureResponse("Get agency offices with their bus and drivers", "/agencies/offices/resources")
                 ),
 
                 "deep@gmail.com", List.of(
@@ -55,8 +55,8 @@ public class DashboardController {
                  ),
 
                 "shreshtha@gmail.com" , List.of(
-                        new FeatureResponse("Get Route with Trips", "/api/routes/{route_id}/trips"),
-                        new FeatureResponse("Get agency offices with their bus and drivers", "/api/agencies/offices/resources")
+                        new FeatureResponse("Get Bookings and their details", "/api/bookings/"),
+                        new FeatureResponse("Get trip reviews with customer id", "/api/trips/customer/{customer_id}/reviews")
                 )
         );
 
