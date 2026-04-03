@@ -22,8 +22,8 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // login allowed
-                        .anyRequest().authenticated()              // baaki sab secure
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtConfig, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable());
