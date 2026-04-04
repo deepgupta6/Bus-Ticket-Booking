@@ -21,12 +21,10 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
         User user = userService.getUser(request.getEmail());
-
-        System.out.println(user);
 
         if (!request.getPassword().equals(user.getPassword())) {
             return ResponseEntity.status(401).body("Invalid password");

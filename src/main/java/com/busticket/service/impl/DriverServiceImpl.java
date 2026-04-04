@@ -8,6 +8,7 @@ import com.busticket.dto.response.TripDetails;
 import com.busticket.entity.Driver;
 import com.busticket.entity.Route;
 import com.busticket.entity.Trip;
+import com.busticket.exception.ResourceNotFoundException;
 import com.busticket.respository.IDriverRepo;
 import com.busticket.respository.ITripRepo;
 import com.busticket.service.interfaces.IDriverService;
@@ -28,12 +29,12 @@ public class DriverServiceImpl implements IDriverService{
     public DriverScheduleResponse getDriverUpcomingTrips(Integer driverId) {
 
         Driver driver = driverRepository.findById(driverId)
-                .orElseThrow(() -> new RuntimeException("Driver not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Driver not found"));
 
         List<Trip> trips = tripRepository.findUpcomingTripsByDriverId(driverId);
 
         List<TripDetails> tripDTOList = trips.stream()
-                .map(this::mapToTripDTO)
+                .map(DriverServiceImpl::mapToTripDTO)
                 .toList();
 
         DriverScheduleResponse dto = new DriverScheduleResponse();
@@ -44,7 +45,7 @@ public class DriverServiceImpl implements IDriverService{
         return dto;
     }
 
-    private TripDetails mapToTripDTO(Trip trip) {
+    public static TripDetails mapToTripDTO(Trip trip) {
 
         Route route = trip.getRoute();
 

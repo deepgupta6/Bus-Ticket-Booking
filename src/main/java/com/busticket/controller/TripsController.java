@@ -51,6 +51,7 @@ public class TripsController {
     
         return ResponseEntity.ok(trip);
     }
+    
 }
 
 

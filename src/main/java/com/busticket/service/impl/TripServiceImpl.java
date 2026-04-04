@@ -1,7 +1,9 @@
 package com.busticket.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import com.busticket.entity.Trip;
 import com.busticket.exception.ResourceNotFoundException;
 import com.busticket.mapper.response.TripMapper;
 import com.busticket.mapper.response.TripResponseMapper;
+import com.busticket.respository.IRouteRepo;
 import com.busticket.respository.ITripRepo;
 import com.busticket.service.interfaces.ITripService;
 
@@ -28,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TripServiceImpl implements ITripService {
 	private final ITripRepo repo;
 	private final TripMapper tripMapper;
+	private final IRouteRepo routeRepo;
 
 	@Override
 	public List<TripResponse> getTripsWithAvailableSeats( int val) {
@@ -37,17 +41,18 @@ public class TripServiceImpl implements ITripService {
 	}
 	
 	@Override
-	public List<DriverTripSummaryResponse> getCompletedTrips(
-            String fromCity,
-            String toCity
-    ) {
-		List<DriverTripSummaryResponse> list1 = repo.getTripsByDriver1(fromCity, toCity);
-		List<DriverTripSummaryResponse> list2 = repo.getTripsByDriver2(fromCity, toCity);
+	public List<DriverTripSummaryResponse> getCompletedTrips(String fromCity, String toCity) {
 
-		 List<DriverTripSummaryResponse> result = Stream.concat(list1.stream(), list2.stream())
-		        .toList();
-		 return result;
-    }
+	    List<DriverTripSummaryResponse> list1 =
+	            Optional.ofNullable(repo.getTripsByDriver1(fromCity, toCity))
+	                    .orElse(Collections.emptyList());
+
+	    List<DriverTripSummaryResponse> list2 =
+	            Optional.ofNullable(repo.getTripsByDriver2(fromCity, toCity))
+	                    .orElse(Collections.emptyList());
+
+	    return Stream.concat(list1.stream(), list2.stream()).toList();
+	}
 
     @Override
     @Transactional(readOnly = true)
@@ -71,10 +76,14 @@ public class TripServiceImpl implements ITripService {
 
 	@Override
 	public List<TripResponse> getTripsWithAvailableSeatsInARoute(int val,int id) {
+		if(!routeRepo.existsById(id)) {
+			throw new ResourceNotFoundException("Route not found with ID: " + id);
+		}
 		
 		return repo.findByAvailableSeatsGreaterThanAndRoute_RouteId(val,id).stream().map(e -> TripResponseMapper.entityToResponse(e))
 				.toList();
 	}
+
 
 }
 

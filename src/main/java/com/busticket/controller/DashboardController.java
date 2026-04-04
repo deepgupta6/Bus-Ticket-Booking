@@ -19,11 +19,13 @@ public class DashboardController {
 
         String email = auth.getName();
 
+        System.out.println(email);
+
 
         Map<String, String> names = Map.of(
-                "javed@gmail.com", "Javed",
+                "javed@gmail.com", "Mohammad Javed",
                 "shivam@gmail.com", "Shivam",
-                "ayush@gmail@gmail.com", "Ayush",
+                "ayush@gmail.com", "Ayush",
                 "shreshtha@gmail.com", "Shrestha",
                 "deep@gmail.com", "Deep"
         );
@@ -33,28 +35,29 @@ public class DashboardController {
 
                 "javed@gmail.com", List.of(
                         new FeatureResponse("Get Customer Details", "/api/customers/{id}"),
-                        new FeatureResponse("Get Trip Details", "GET /api/trips/{trip_id}/")
+                        new FeatureResponse("Get Trip Details", "/api/trips/{trip_id}")
                 ),
 
                 "shivam@gmail.com", List.of(
-                        new FeatureResponse("Get Agencies in a City", "/api/agencies"),
+                        new FeatureResponse("Get Agencies in a City", "/api/agencies?city={city}"),
                         new FeatureResponse("Get Customer Bookings and Payments", "/api/customers/bookings-payments")
                 ),
 
-                "Ayush@gmail.com" , List.of(
+                "ayush@gmail.com" , List.of(
                         new FeatureResponse("Get Route with Trips", "/api/routes/{route_id}/trips"),
-                        new FeatureResponse("Get agency offices with their bus and drivers", "/api/agencies/offices/resources")
+                        new FeatureResponse("Get agency offices with their bus and drivers", "/agencies/offices/resources")
                 ),
 
                 "deep@gmail.com", List.of(
-                        new FeatureResponse("Get All Bookings", "/api/bookings/"),
-                        new FeatureResponse("Get Booking by ID", "/api/bookings/{id}"),
-                        new FeatureResponse("Get Dashboard Info", "/api/dashboard")
+                        new FeatureResponse("Get Trip with seat availability", "/api/trips"),
+                        new FeatureResponse("Get driver schedule (their trips and routes)", "/api/drivers/{driver_id}/upcoming-trips"),
+                        new FeatureResponse("Get total trips completed by drivers from boarding address and dropping address", "/api/trips/completed?fromCity={from_city}&toCity={to_city}"),
+                        new FeatureResponse("Get Trip with seat availability in a route", "/api/trips/route/{id}")
                  ),
 
                 "shreshtha@gmail.com" , List.of(
-                        new FeatureResponse("Get Route with Trips", "/api/routes/{route_id}/trips"),
-                        new FeatureResponse("Get agency offices with their bus and drivers", "/api/agencies/offices/resources")
+                        new FeatureResponse("Get Bookings and their details", "/api/bookings/"),
+                        new FeatureResponse("Get trip reviews with customer id", "/api/trips/customer/{customer_id}/reviews")
                 )
         );
 
