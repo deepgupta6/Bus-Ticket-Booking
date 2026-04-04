@@ -13,6 +13,16 @@ import com.busticket.service.interfaces.IAgencyOfficeService;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * REST Controller for managing Agency Office resources.
+ *
+ * This controller provides APIs to fetch agency office details
+ * along with associated resources such as buses and drivers.
+ *
+ * It interacts with the service layer to retrieve and process data.
+ *
+ * @author Ayush
+ */
 @RestController
 public class AgencyOfficeController {
 
@@ -22,7 +32,11 @@ public class AgencyOfficeController {
 		this.agencyService =agencyService;
 	}
 
-
+	/**
+	 * Fetches all agency offices along with their associated resources.
+	 *
+	 * @return ResponseEntity containing list of AgencyOfficeWithResourcesDTO
+	 */
 	    @GetMapping("/agencies/offices/resources")
 	    public ResponseEntity<List<AgencyOfficeWithResourcesDTO>> getAgencyOfficesWithResources() {
 

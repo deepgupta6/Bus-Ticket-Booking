@@ -5,9 +5,9 @@ import com.busticket.dto.response.FeatureResponse;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.web.bind.annotation.*;
 
-        import java.util.*;
+import java.util.*;
 
-        import org.springframework.security.core.Authentication;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/api")
@@ -54,6 +54,7 @@ public class DashboardController {
                         new FeatureResponse("Get total trips completed by drivers from boarding address and dropping address", "/api/trips/completed?fromCity={from_city}&toCity={to_city}"),
                         new FeatureResponse("Get Trip with seat availability in a route", "/api/trips/route/{id}")
                  ),
+
 
                 "shreshtha@gmail.com" , List.of(
                         new FeatureResponse("Get Bookings and their details", "/api/bookings/"),
