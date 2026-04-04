@@ -21,9 +21,11 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
+        System.out.println(request.getEmail());
+        System.out.println(request.getPassword());
         User user = userService.getUser(request.getEmail());
 
         System.out.println(user);

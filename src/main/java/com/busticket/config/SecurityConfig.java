@@ -22,7 +22,7 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // login allowed
+                        .requestMatchers("/api/auth/**" ,"/**").permitAll() // login allowed
                         .anyRequest().authenticated()              // baaki sab secure
                 )
                 .addFilterBefore(jwtConfig, UsernamePasswordAuthenticationFilter.class)
