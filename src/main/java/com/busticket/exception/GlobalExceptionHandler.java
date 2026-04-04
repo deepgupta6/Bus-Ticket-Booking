@@ -19,4 +19,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(409, ex.getMessage()));
     }
+
+    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> handleTypeMismatch(Exception ex) {
+        return ResponseEntity.badRequest().body("Invalid input type");
+    }
+
+    @ExceptionHandler(org.springframework.web.bind.MissingServletRequestParameterException.class)
+    public ResponseEntity<String> handleMissingParam(Exception ex) {
+        return ResponseEntity.badRequest().body("Missing required parameter");
+    }
 }
