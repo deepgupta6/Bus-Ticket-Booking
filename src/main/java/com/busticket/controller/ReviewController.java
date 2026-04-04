@@ -12,6 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST Controller for managing review-related operations.
+ *
+ * This controller provides APIs to fetch customer reviews
+ * associated with trips.
+ *
+ * It interacts with the service layer to retrieve review data
+ * and maps entities to DTOs before returning the response.
+ *
+ * @author Shreshtha
+ */
 @RestController
 @RequestMapping("/api/trips")
 public class ReviewController {
@@ -23,6 +34,12 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
+    /**
+     * Retrieves all reviews given by a specific customer.
+     *
+     * @param customerId the ID of the customer
+     * @return ResponseEntity containing list of ReviewResponse DTOs
+     */
     @GetMapping("/customer/{customerId}/reviews")
 
     public ResponseEntity<List<ReviewResponse>> getReviewsByCustomerId(@PathVariable Integer customerId) {
