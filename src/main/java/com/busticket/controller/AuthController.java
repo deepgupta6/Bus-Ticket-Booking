@@ -1,6 +1,6 @@
 package com.busticket.controller;
 
-import com.busticket.dto.request.LoginRequest;
+import com.busticket.entity.Login;
 import com.busticket.entity.User;
 import com.busticket.service.impl.JwtService;
 import com.busticket.service.interfaces.IUserService;
@@ -22,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody Login request) {
 
         System.out.println(request.getEmail());
         System.out.println(request.getPassword());

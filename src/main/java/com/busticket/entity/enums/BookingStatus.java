@@ -1,7 +1,5 @@
 package com.busticket.entity.enums;
 
-import java.util.Locale;
-
 public enum BookingStatus {
 
     Available("Available"),

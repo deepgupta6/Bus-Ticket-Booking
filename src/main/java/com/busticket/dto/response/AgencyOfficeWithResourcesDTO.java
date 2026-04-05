@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.busticket.entity.Bus;
 import com.busticket.entity.Driver;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
